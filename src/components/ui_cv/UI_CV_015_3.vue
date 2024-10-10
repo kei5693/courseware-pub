@@ -1,0 +1,491 @@
+<template>
+  <div class="contents">
+    <div class="title_box">
+      <h2>평가명이 노출됩니다. 평가명이 한줄로 노출됩니다. 평가명이 한줄로 노출됩니다. 평가명이 한줄로 노출됩니다. 평가명이 한줄로 노출됩니다. 평가명이 한줄로 노출됩니다.</h2>
+      <div class="examination">
+        <div class="schedule_txt">
+          <strong>학습일정</strong>
+          <span>2024-10-04 ~ 2024-10-04</span>
+        </div>
+        <div class="btn_box btn_view_box">
+          <button
+            type="button"
+            title="학생별 보기"
+            class="btn_view_sudent"
+            :class="{ active: activeButton === 'student' }"
+            @click="toggleBtn('student')">
+            <span>학생별 보기</span>
+          </button>
+          <button
+            type="button"
+            title="문항별 보기"
+            class="btn_view_question"
+            :class="{ active: activeButton === 'question' }"
+            @click="toggleBtn('question')">
+            <span>문항별 보기</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="inner">
+      <div class="eval_status_wrap">
+        <div class="eval_status">
+          <div class="status">
+            <strong>전체 <span>16</span>명</strong>
+            <ul>
+              <li class="exam_completed"><span>응시완료</span><strong>3명</strong></li>
+              <li class="taking_test"><span>응시중</span><strong>4명</strong></li>
+              <li><span>미응시</span><strong>9명</strong></li>
+            </ul>
+          </div>
+
+          <div class="announce">
+            <ul>
+              <!-- <li class="current_location">현재위치</li> -->
+              <li>미답변</li>
+              <!-- <li class="answer">답변</li> -->
+            </ul>
+
+            <ul>
+              <li class="scoring_waiting">채점 대기</li>
+              <li class="correct_answer">정답</li>
+              <li class="incorrect_answer">오답</li>
+            </ul>
+
+            <button type="button" title="새로고침" class="btn_refresh"><span>새로고침</span></button>
+          </div>
+        </div>
+        <ul class="eval_status_list">
+          <!-- 1 -->
+          <!--
+            응시완료 exam_completed
+            응시중 taking_test
+
+            현재위치 current_location
+            미답변 unanswered
+            답변 answer
+
+            채점대기 scoring_waiting
+            정답 correct_answer
+            오답 incorrect_answer
+          -->
+          <li class="exam_completed">
+            <div class="student_status">
+              <div>
+                <span>응시완료</span>
+                <strong>강감찬</strong>
+                <p>8분 39초 소요</p>
+              </div>
+              <!-- exam_completed 있을 경우만 버튼 노출되도록 css에서 제어 -->
+              <button type="button"><span>평가결과</span></button>
+            </div>
+
+            <ul class="answer_sheet">
+              <li class="correct_answer">①</li>
+              <li class="correct_answer">②</li>
+              <li class="correct_answer">⑤</li>
+              <li class="incorrect_answer">③</li>
+              <li class="correct_answer">②</li>
+
+              <li class="correct_answer">⑤</li>
+              <li class="correct_answer">①,④</li>
+              <li class="short_answer incorrect_answer">단답식</li>
+              <li class="short_answer scoring_waiting">주관식</li>
+              <li class="short_answer scoring_waiting">서술형</li>
+            </ul>
+          </li>
+          <!-- 2 -->
+          <li class="exam_completed">
+            <div class="student_status">
+              <div>
+                <span>응시완료</span>
+                <strong>곽재우</strong>
+                <p>9분 27초 소요</p>
+              </div>
+              <!-- exam_completed 있을 경우만 버튼 노출되도록 css에서 제어 -->
+              <button type="button"><span>평가결과</span></button>
+            </div>
+            <ul class="answer_sheet">
+              <li class="correct_answer">①</li>
+              <li class="correct_answer">②</li>
+              <li class="correct_answer">⑤</li>
+              <li class="incorrect_answer">③</li>
+              <li class="correct_answer">②</li>
+
+              <li class="correct_answer">⑤</li>
+              <li class="correct_answer">①,④</li>
+              <li class="short_answer incorrect_answer">단답식</li>
+              <li class="short_answer scoring_waiting">주관식</li>
+              <li class="short_answer scoring_waiting">서술형</li>
+            </ul>
+          </li>
+          <!-- 3 -->
+          <li class="exam_completed">
+            <div class="student_status">
+              <div>
+                <span>응시완료</span>
+                <strong>김석진</strong>
+                <p>9분 32초 소요</p>
+              </div>
+              <!-- exam_completed 있을 경우만 버튼 노출되도록 css에서 제어 -->
+              <button type="button"><span>평가결과</span></button>
+            </div>
+            <ul class="answer_sheet">
+              <li class="correct_answer">①</li>
+              <li class="correct_answer">②</li>
+              <li class="correct_answer">⑤</li>
+              <li class="incorrect_answer">③</li>
+              <li class="correct_answer">②</li>
+
+              <li class="correct_answer">⑤</li>
+              <li class="correct_answer">①,④</li>
+              <li class="short_answer incorrect_answer">단답식</li>
+              <li class="short_answer scoring_waiting">주관식</li>
+              <li class="short_answer scoring_waiting">서술형</li>
+            </ul>
+          </li>
+          <!-- 4 -->
+          <li class="exam_completed">
+            <div class="student_status">
+              <div>
+                <span>응시중</span>
+                <strong>김정호</strong>
+                <p>10분 39초</p>
+              </div>
+              <!-- exam_completed 있을 경우만 버튼 노출되도록 css에서 제어 -->
+              <button type="button"><span>평가결과</span></button>
+            </div>
+            <ul class="answer_sheet">
+              <li class="correct_answer">①</li>
+              <li class="correct_answer">②</li>
+              <li class="correct_answer">⑤</li>
+              <li class="incorrect_answer">③</li>
+              <li class="correct_answer">②</li>
+
+              <li class="correct_answer">⑤</li>
+              <li class="correct_answer">①,④</li>
+              <li class="short_answer incorrect_answer">단답식</li>
+              <li class="short_answer scoring_waiting">주관식</li>
+              <li class="short_answer scoring_waiting">서술형</li>
+            </ul>
+          </li>
+          <!-- 5 -->
+          <li class="exam_completed">
+            <div class="student_status">
+              <div>
+                <span>응시중</span>
+                <strong>김태형</strong>
+                <p>10분 39초</p>
+              </div>
+              <!-- exam_completed 있을 경우만 버튼 노출되도록 css에서 제어 -->
+              <button type="button"><span>평가결과</span></button>
+            </div>
+            <ul class="answer_sheet">
+              <li class="correct_answer">①</li>
+              <li class="correct_answer">②</li>
+              <li class="correct_answer">⑤</li>
+              <li class="incorrect_answer">③</li>
+              <li class="correct_answer">②</li>
+
+              <li class="correct_answer">⑤</li>
+              <li class="correct_answer">①,④</li>
+              <li class="short_answer incorrect_answer">단답식</li>
+              <li class="short_answer scoring_waiting">주관식</li>
+              <li class="short_answer scoring_waiting">서술형</li>
+            </ul>
+          </li>
+          <!-- 6 -->
+          <li class="exam_completed">
+            <div class="student_status">
+              <div>
+                <span>응시중</span>
+                <strong>민윤기</strong>
+                <p>10분 39초</p>
+              </div>
+              <!-- exam_completed 있을 경우만 버튼 노출되도록 css에서 제어 -->
+              <button type="button"><span>평가결과</span></button>
+            </div>
+            <ul class="answer_sheet">
+              <li class="correct_answer">①</li>
+              <li class="correct_answer">②</li>
+              <li class="correct_answer">⑤</li>
+              <li class="incorrect_answer">③</li>
+              <li class="correct_answer">②</li>
+
+              <li class="correct_answer">⑤</li>
+              <li class="correct_answer">①,④</li>
+              <li class="short_answer incorrect_answer">단답식</li>
+              <li class="short_answer scoring_waiting">주관식</li>
+              <li class="short_answer scoring_waiting">서술형</li>
+            </ul>
+          </li>
+          <!-- 7 -->
+          <li class="exam_completed">
+            <div class="student_status">
+              <div>
+                <span>응시중</span>
+                <strong>박지민</strong>
+                <p>10분 39초</p>
+              </div>
+              <!-- exam_completed 있을 경우만 버튼 노출되도록 css에서 제어 -->
+              <button type="button"><span>평가결과</span></button>
+            </div>
+            <ul class="answer_sheet">
+              <li class="correct_answer">①</li>
+              <li class="correct_answer">②</li>
+              <li class="correct_answer">⑤</li>
+              <li class="incorrect_answer">③</li>
+              <li class="correct_answer">②</li>
+
+              <li class="correct_answer">⑤</li>
+              <li class="correct_answer">①,④</li>
+              <li class="short_answer incorrect_answer">단답식</li>
+              <li class="short_answer scoring_waiting">주관식</li>
+              <li class="short_answer scoring_waiting">서술형</li>
+            </ul>
+          </li>
+          <!-- 8 -->
+          <li>
+            <div class="student_status">
+              <div>
+                <span>미응시</span>
+                <strong>박찬호</strong>
+                <!-- <p>9분 27초 소요</p> -->
+              </div>
+              <!-- exam_completed 있을 경우만 버튼 노출되도록 css에서 제어 -->
+              <button type="button"><span>평가결과</span></button>
+            </div>
+            <ul class="answer_sheet">
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
+          </li>
+          <!-- 9 -->
+          <li>
+            <div class="student_status">
+              <div>
+                <span>미응시</span>
+                <strong>박찬호</strong>
+                <!-- <p>9분 27초 소요</p> -->
+              </div>
+              <!-- exam_completed 있을 경우만 버튼 노출되도록 css에서 제어 -->
+              <button type="button"><span>평가결과</span></button>
+            </div>
+            <ul class="answer_sheet">
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
+          </li>
+          <!-- 10 -->
+          <li>
+            <div class="student_status">
+              <div>
+                <span>미응시</span>
+                <strong>박찬호</strong>
+                <!-- <p>9분 27초 소요</p> -->
+              </div>
+              <!-- exam_completed 있을 경우만 버튼 노출되도록 css에서 제어 -->
+              <button type="button"><span>평가결과</span></button>
+            </div>
+            <ul class="answer_sheet">
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
+          </li>
+          <!-- 11 -->
+          <li>
+            <div class="student_status">
+              <div>
+                <span>미응시</span>
+                <strong>박찬호</strong>
+                <!-- <p>9분 27초 소요</p> -->
+              </div>
+              <!-- exam_completed 있을 경우만 버튼 노출되도록 css에서 제어 -->
+              <button type="button"><span>평가결과</span></button>
+            </div>
+            <ul class="answer_sheet">
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
+          </li>
+          <!-- 12 -->
+          <li>
+            <div class="student_status">
+              <div>
+                <span>미응시</span>
+                <strong>박찬호</strong>
+                <!-- <p>9분 27초 소요</p> -->
+              </div>
+              <!-- exam_completed 있을 경우만 버튼 노출되도록 css에서 제어 -->
+              <button type="button"><span>평가결과</span></button>
+            </div>
+            <ul class="answer_sheet">
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
+          </li>
+          <!-- 13 -->
+          <li>
+            <div class="student_status">
+              <div>
+                <span>미응시</span>
+                <strong>박찬호</strong>
+                <!-- <p>9분 27초 소요</p> -->
+              </div>
+              <!-- exam_completed 있을 경우만 버튼 노출되도록 css에서 제어 -->
+              <button type="button"><span>평가결과</span></button>
+            </div>
+            <ul class="answer_sheet">
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
+          </li>
+          <!-- 14 -->
+          <li>
+            <div class="student_status">
+              <div>
+                <span>미응시</span>
+                <strong>박찬호</strong>
+                <!-- <p>9분 27초 소요</p> -->
+              </div>
+              <!-- exam_completed 있을 경우만 버튼 노출되도록 css에서 제어 -->
+              <button type="button"><span>평가결과</span></button>
+            </div>
+            <ul class="answer_sheet">
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
+          </li>
+          <!-- 15 -->
+          <li>
+            <div class="student_status">
+              <div>
+                <span>미응시</span>
+                <strong>박찬호</strong>
+                <!-- <p>9분 27초 소요</p> -->
+              </div>
+              <!-- exam_completed 있을 경우만 버튼 노출되도록 css에서 제어 -->
+              <button type="button"><span>평가결과</span></button>
+            </div>
+            <ul class="answer_sheet">
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
+          </li>
+          <!-- 16 -->
+          <li>
+            <div class="student_status">
+              <div>
+                <span>미응시</span>
+                <strong>박찬호</strong>
+                <!-- <p>9분 27초 소요</p> -->
+              </div>
+              <!-- exam_completed 있을 경우만 버튼 노출되도록 css에서 제어 -->
+              <button type="button"><span>평가결과</span></button>
+            </div>
+            <ul class="answer_sheet">
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+export default {
+  data () {
+    return {
+      activeButton: 'student'
+    }
+  },
+  methods: {
+    toggleBtn (buttonType) {
+      this.activeButton = buttonType
+    }
+  }
+}
+</script>
